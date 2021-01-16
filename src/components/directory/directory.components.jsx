@@ -16,7 +16,7 @@ class Directory extends React.Component {
                 title: 'hats',
                 imageUrl: 'https://www.wellandgood.com/wp-content/uploads/2019/05/GettyImages-905563580.jpg',
                 id: 1,
-                linkUrl: 'hats'
+                linkUrl: 'shop'
             },
             {
                 title: 'bags',
