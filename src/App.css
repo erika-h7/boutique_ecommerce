@@ -4,3 +4,8 @@ body {
     font-family: 'Amatic SC', cursive;
     padding: 20px 60px;
 }
+
+a {
+    text-decoration: none;
+    color: #BD9391;
+}
