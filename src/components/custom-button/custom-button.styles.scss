@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap');
+
+$sub-color: #BD9391;
+$main-color: #646E68;
+
+.custom-button {
+    min-width: 165px;
+    width: auto;
+    height: 50px;
+    letter-spacing: 0.5px;
+    line-height: 50px;
+    padding: 0 35px 0 35px;
+    font-size: 1.5rem;
+    background-color: $sub-color;
+    color: white;
+    text-transform: uppercase;
+    // font-family:'Yusei Magic', sans-serif;  
+    font-family: 'Amatic SC', sans-serif;
+    font-weight: bolder;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+
+    &:hover {
+        background-color: white;
+        color: $sub-color;
+        border: 2px solid $sub-color;
+    }
+}
