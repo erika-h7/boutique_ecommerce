@@ -4,7 +4,7 @@ $sub-color: #BD9391;
 $main-color: #646E68;
 
 .sign-in {
-    width: 30vw;
+    width: 380px;
     display: flex;
     flex-direction: column;
 
@@ -25,5 +25,10 @@ $main-color: #646E68;
         color: $main-color;
         font-size: 1.2rem;
         font-weight: thin;
+    }
+
+    .buttons {
+        display: flex;
+        justify-content: space-between;
     }
 }

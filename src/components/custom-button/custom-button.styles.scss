@@ -10,7 +10,8 @@ $main-color: #646E68;
     height: 50px;
     letter-spacing: 0.5px;
     line-height: 50px;
-    padding: 0 35px 0 35px;
+    padding: 0 19px 0 19px;
+    margin: .3rem;
     font-size: 1.5rem;
     background-color: $sub-color;
     color: white;
@@ -26,5 +27,14 @@ $main-color: #646E68;
         background-color: white;
         color: $sub-color;
         border: 2px solid $sub-color;
+    }
+
+    &.google-sign-in {
+        background-color: #4285f4;
+        
+        &:hover {
+            color: #4285f4;
+            background-color: white;
+        }
     }
 }
