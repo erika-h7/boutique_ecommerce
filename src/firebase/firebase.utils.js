@@ -4,14 +4,44 @@ import 'firebase/firestore';
 import 'firebase/auth';
 
 const config = {
-    apiKey: "AIzaSyATgWFdIpsNy955nXjHwuoaDcR4h9-pNyo",
-    authDomain: "boutique-db-801f0.firebaseapp.com",
-    projectId: "boutique-db-801f0",
-    storageBucket: "boutique-db-801f0.appspot.com",
-    messagingSenderId: "344251560898",
-    appId: "1:344251560898:web:b4b08ff98f145194a79c5b",
-    measurementId: "G-S6HVPSE2JY"
+    apiKey: "AIzaSyAabiiEH5cA5HdUiRsfKrv4YO90xLs-_1g",
+    authDomain: "boutique-db-9228a.firebaseapp.com",
+    projectId: "boutique-db-9228a",
+    storageBucket: "boutique-db-9228a.appspot.com",
+    messagingSenderId: "795705409345",
+    appId: "1:795705409345:web:0b71db35d4709457f1abc0",
+    measurementId: "G-Z98NFQMVQH"
 };
+
+export const createUserProfileDocument = async (userAuth, additionalData) => {
+    // if userAuth doesn't exist then null, return.
+    if (!userAuth) return;
+
+    const userRef = firestore.doc(`users/${userAuth.uid}`);
+
+    const snapShot = await userRef.get();
+
+    // if the user doesn't exist, create a new user function
+    if(!snapShot.exists) {
+        const { displayName, email } = userAuth;
+        const createdAt = new Date();
+
+        try {
+            await userRef.set({
+                displayName,
+                email,
+                createdAt,
+                ...additionalData
+            })
+        } catch (error) {
+            console.log('error creating user', error.message);
+        }
+    };
+    
+    return userRef;
+    console.log(snapShot);
+
+}
 
 firebase.initializeApp(config);
 

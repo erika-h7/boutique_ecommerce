@@ -12,7 +12,7 @@ import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up
 import Header from './components/header/header.components';
 
 // firebase
-import { auth } from './firebase/firebase.utils';
+import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 
 // class component (so we can have access to state)
 class App extends React.Component {
@@ -27,11 +27,27 @@ class App extends React.Component {
   unsuscribeFromAuth = null;
 
   componentDidMount() {
-    this.unsuscribeFromAuth = auth.onAuthStateChanged(user => {
-      this.setState({ currentUser: user });
+    this.unsuscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+      // if userAuth exist
+      if (userAuth) {
+        const userRef = await createUserProfileDocument(userAuth);
 
-      console.log(user);
-    })
+        // check if our database has updated any new reference with any new data
+        userRef.onSnapshot(snapShot => {
+          this.setState({
+            currentUser: {
+              id: snapShot.id,
+              ...snapShot.data()
+            }
+          });
+
+          console.log(this.state);
+        });
+
+      } else {
+        this.setState({ currentUser: userAuth });
+      }
+    });
   }
 
   componentWillUnmount() {
