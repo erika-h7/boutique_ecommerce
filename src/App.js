@@ -2,6 +2,9 @@ import React from 'react';
 import {Switch, Route} from 'react-router-dom';
 import './App.css';
 
+// Redux
+import { connect } from 'react-redux';
+
 // pages
 import HomePage from './pages/homepage/homepage.components';
 // import ShopPage from './pages/shop/shop.components.jsx';
@@ -11,22 +14,20 @@ import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up
 // components
 import Header from './components/header/header.components';
 
+// user
+import { setCurrentUser } from './redux/user/user.actions';
+
 // firebase
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 
 // class component (so we can have access to state)
 class App extends React.Component {
-  constructor() {
-    super();
-
-    this.state = {
-      currentUser: null
-    }
-  }
 
   unsuscribeFromAuth = null;
 
   componentDidMount() {
+    const { setCurrentUser } = this.props;
+
     this.unsuscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       // if userAuth exist
       if (userAuth) {
@@ -34,18 +35,16 @@ class App extends React.Component {
 
         // check if our database has updated any new reference with any new data
         userRef.onSnapshot(snapShot => {
-          this.setState({
-            currentUser: {
-              id: snapShot.id,
-              ...snapShot.data()
-            }
+          setCurrentUser({
+            id: snapShot.id,
+            ...snapShot.data()
           });
 
           //console.log(this.state);
         });
 
       } else {
-        this.setState({ currentUser: userAuth });
+        setCurrentUser( userAuth );
       }
     });
   }
@@ -58,7 +57,7 @@ class App extends React.Component {
     return (
       <div>
 
-      <Header currentUser={this.state.currentUser} />
+      <Header />
 
       <Switch>
 
@@ -74,4 +73,8 @@ class App extends React.Component {
 
 }
 
-export default App;
+const mapDispatchToProps = dispatch => ({
+  setCurrentUser: user => dispatch(setCurrentUser(user))
+});
+
+export default connect(null, mapDispatchToProps)(App);
