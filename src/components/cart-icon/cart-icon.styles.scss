@@ -1,0 +1,24 @@
+.cart-icon {
+    width: 50px;
+    height: 50px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    .shopping-icon {
+        width: 45px;
+        height: 45px;
+        // how to change svg icon color
+
+    }
+
+    .item-count {
+        position: absolute;
+        font-size: 25px;
+        font-weight: 900;
+        top: 17px;
+        color: #646E68;
+    }
+}

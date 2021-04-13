@@ -13,7 +13,6 @@ import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up
 
 // components
 import Header from './components/header/header.components';
-
 // user
 import { setCurrentUser } from './redux/user/user.actions';
 
@@ -65,8 +64,10 @@ class App extends React.Component {
         <Route exact path="/shop" component={ ShopPage }/>
         <Route exact path="/signin" render={() => this.props.currentUser ? (<Redirect to='/' />) : (<SignInAndSignUpPage />)}/>
 
+        
       </Switch>
 
+      
       </div>
     );
   }
