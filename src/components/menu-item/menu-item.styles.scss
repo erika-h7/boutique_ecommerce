@@ -95,8 +95,8 @@
     transition-property: transform; 
 
     &:hover, &:focus , &:active {
-      -webkit-transform: scale(1.3);
-      transform: scale(1.3);
+      -webkit-transform: scale(1.3px);
+      transform: scale(1.3px);
     }
 
     .title {

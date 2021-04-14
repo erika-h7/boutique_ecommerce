@@ -5,6 +5,7 @@ $sub-color: #BD9391;
 $main-color: #646E68;
 
 .custom-button {
+    outline: none;
     min-width: 165px;
     width: auto;
     height: 50px;
@@ -22,6 +23,8 @@ $main-color: #646E68;
     border: none;
     cursor: pointer;
     border-radius: 5px;
+    display: flex;
+    justify-content: center;
 
     &:hover {
         background-color: white;
@@ -35,6 +38,18 @@ $main-color: #646E68;
         &:hover {
             color: #4285f4;
             background-color: white;
+        }
+    }
+
+    &.inverted {
+        background-color: white;
+        color: $sub-color;
+        border: 2px solid $sub-color;
+
+        &:hover {
+            background: #646E68;
+            color: white;
+            border: none;
         }
     }
 }
