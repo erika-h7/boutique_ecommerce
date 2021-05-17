@@ -24,7 +24,16 @@
     }
 
     .quantity {
-        padding-left: 20px;
+        display: flex;
+
+        .arrow {
+            cursor: pointer;
+            font-size: 4rem;
+        }
+
+        .value {
+            margin: auto 15px;
+        }
     }
 
     .remove-button {
