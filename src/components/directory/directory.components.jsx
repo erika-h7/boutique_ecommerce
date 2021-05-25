@@ -1,4 +1,8 @@
 import React from "react";
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+
+import { selectDirectorySections } from '../../redux/directory/directory.selectors';
 
 // Components
 import MenuItem from "../menu-item/menu-item.components.jsx";
@@ -6,61 +10,19 @@ import MenuItem from "../menu-item/menu-item.components.jsx";
 // Styles
 import './directory.styles.scss';
 
-class Directory extends React.Component {
+const Directory = ({ sections }) => (
 
-    constructor() {
-        super();
+    <div className="directory-menu">
+        {
+            sections.map(({ id, ...otherSectionProps }) => (
+                <MenuItem key={id} { ...otherSectionProps } />
+            ))
+        }
+    </div>
+);
 
-        this.state = {
-            sections: [{
-                title: 'hats',
-                imageUrl: 'https://www.wellandgood.com/wp-content/uploads/2019/05/GettyImages-905563580.jpg',
-                id: 1,
-                linkUrl: 'shop'
-            },
-            {
-                title: 'bags',
-                imageUrl: 'https://i.pinimg.com/originals/00/09/fb/0009fb829de5ced795d1ed509e58866b.jpg',
-                id: 2,
-                linkUrl: ''
-            },
-            {
-                title: 'accesories',
-                imageUrl: 'https://assets.vogue.com/photos/5e2b0afa540d7f000847c4a0/master/w_2560%2Cc_limit/VO0220_Minimalism_12.jpg',
-                id: 3,
-                linkUrl: ''
-            },
-            {
-                title: 'tops',
-                imageUrl: 'https://cdn.cliqueinc.com/posts/236389/minimalist-fashion-blogs-236389-1506027849590-main.700x0c.jpg',
-                size: 'large',
-                id: 4,
-                linkUrl: ''
-            },
-            {
-                title: 'capsule',
-                imageUrl: 'https://i.pinimg.com/originals/bf/8e/41/bf8e41eebc45de8ecf086a944d741acb.jpg',
-                size: 'large',
-                id: 5,
-                linkUrl: ''
-            }
-            ]
-        };
-    }
+const mapStateToProps = createStructuredSelector({
+    sections: selectDirectorySections
+});
 
-    render() {
-        
-        return (
-            <div className="directory-menu">
-                {
-                    this.state.sections.map(({ id, ...otherSectionProps }) => (
-                        <MenuItem key={id} { ...otherSectionProps } />
-                    ))
-                }
-            </div>
-        )
-    }
-
-}
-
-export default Directory;
+export default connect(mapStateToProps)(Directory);

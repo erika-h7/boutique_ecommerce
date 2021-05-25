@@ -2,7 +2,7 @@
 
 .collection-item {
   font-family: 'Yusei Magic', sans-serif;  
-  width: 22%;
+  width: 22vw;
   display: flex;
   flex-direction: column;
   height: 350px;
@@ -22,7 +22,8 @@
     width: 80%;
     opacity: 0.7;
     position: absolute;
-    top: 255px;
+    // top: 255px;
+    top: 60%;
     display: none;
   }
 
@@ -40,7 +41,7 @@
   .collection-footer {
     color: #646E68;
     width: 100%;
-    height: 5%;
+    height: 20%;
     display: flex;
     justify-content: space-between;
     font-size: 18px;
